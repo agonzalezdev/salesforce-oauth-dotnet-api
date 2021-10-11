@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  application:
+    build: .
+    ports:
+      - "8080:80"
+      - "8081:443"
+    environment:
+      SALESFORCE_CLIENT_ID: CHANGE_ME
+      SALESFORCE_SECRET: CHANGE_ME
+      SALESFORCE_CALLBACK_URL: /auth/callback
+      ASPNETCORE_URLS: https://+;http://+
+      ASPNETCORE_Kestrel__Certificates__Default__Password: salesforce
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+    volumes:
+      - C:\tmp:/https:ro
